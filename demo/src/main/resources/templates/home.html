@@ -1,0 +1,28 @@
+<div th:replace="fragment/header::header"></div>
+<div class="bg-success">
+	<h1 class="text-center bg-success">BIENVENUE SUR MON 1er EXERCICE SPRINGBOOT</h1>
+<h3 class="text-center bg-success">Voici la liste des utilisateurs</h3>
+<div class="container bg-success">
+	<table class="table" th:if="${users}!=null">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Prenom</th>
+      <th scope="col">Email</th>
+      <th scope="col">Update</th>
+      <th scope="col">Supp</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr th:each="user : ${users}">
+	<td th:text="${user.nom}"></td>
+	<td th:text="${user.prenom}"></td>
+	<td th:text="${user.email}"></td>
+	<td><a th:href="@{/update/{id}(id=${user.id})}"><i class="bi bi-pen text-primary" ></i></a></td>
+	<td><a th:href="@{/delete/{id}(id=${user.id})}"><i class="bi bi-trash3 text-danger" ></i></a></td>
+</tr>
+  </tbody>
+</table>
+</div>
+</div>
+<div th:replace="fragment/footer::footer"></div>
