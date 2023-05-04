@@ -2,8 +2,8 @@
 <div th:replace="fragment/header::header"></div>
 <div class="bg-success">
 	<div class="container bg-success">
-	 <h1 th:text="${user.id} > 0 ? 'Update user !' : 'Ajout Users !'" class="text-center"></h1> 
-	<form method="post" th:action="*{id} < 0 ? '/userManagement/update' ! '/userManagement'" th:object="${user}">
+	 <h1 th:text="${employe.id} > 0 ? 'Update employe !' : 'Ajout employe !'" class="text-center"></h1> 
+	<form method="post" th:object="${employe}" th:action="@{/employeManagement}">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Prenom</label>
     <input type="text" class="form-control" id="exampleInputEmail1" th:field="*{prenom}"/>
@@ -17,11 +17,7 @@
     <input type="email" class="form-control" id="exampleInputEmail1" th:field="*{email}" />
     <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
   </div>
-<!--  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" name="password">
-  </div>-->
-  <button type="submit" class="btn btn-warning mb-3" th:text="${user.id} > 0 ? 'Update user !' : 'Ajout Users !'" ></button>
+  <button type="submit" class="btn btn-warning mb-3" th:text="${employe.id} > 0 ? 'Update employe !' : 'Ajout employe !'" ></button>
 </form>
 </div>
 </div>

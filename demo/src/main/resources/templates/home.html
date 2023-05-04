@@ -1,9 +1,9 @@
 <div th:replace="fragment/header::header"></div>
-<div class="bg-success">
+<div  class="bg-success">
 	<h1 class="text-center bg-success">BIENVENUE SUR MON 1er EXERCICE SPRINGBOOT</h1>
-<h3 class="text-center bg-success">Voici la liste des utilisateurs</h3>
+<h3 class="text-center bg-success">Voici la liste des employes</h3>
 <div class="container bg-success">
-	<table class="table" th:if="${users}!=null">
+	<table class="table" th:if="${employe}!=null">
   <thead>
     <tr>
       <th scope="col">Nom</th>
@@ -14,12 +14,37 @@
     </tr>
   </thead>
   <tbody>
-<tr th:each="user : ${users}">
-	<td th:text="${user.nom}"></td>
-	<td th:text="${user.prenom}"></td>
-	<td th:text="${user.email}"></td>
-	<td><a th:href="@{/update/{id}(id=${user.id})}"><i class="bi bi-pen text-primary" ></i></a></td>
-	<td><a th:href="@{/delete/{id}(id=${user.id})}"><i class="bi bi-trash3 text-danger" ></i></a></td>
+<tr th:each="employe : ${employe}">
+	<td th:text="${employe.nom}"></td>
+	<td th:text="${employe.prenom}"></td>
+	<td th:text="${employe.email}"></td>
+	<td><a th:href="@{/update/{aze}(aze=${employe.id})}"><i class="bi bi-pen text-primary" ></i></a></td>
+	<!--<td><a th:href="@{/delete/{id}(id=${user.id})}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash3 text-danger" ></i></a></td>-->
+	<td>
+		<button type="button" class="btn" data-bs-toggle="modal" th:attr="data-bs-target='#exampleModal' + *{employe.id}">
+			<i class="bi bi-trash3 text-danger" ></i>
+		</button>
+	</td>
+<!--********* MODAL ********-->
+<div class="modal fade" th:id="'exampleModal' + *{employe.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Attention !</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Etes vous sûr de vouloir supprimer definitivement ce user ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+       	<a th:href="@{/delete/{id}(id=${employe.id})}">
+        	<button type="button" class="btn btn-danger">Supprimer</button>
+		</a>
+      </div>
+    </div>
+  </div>
+</div>
 </tr>
   </tbody>
 </table>

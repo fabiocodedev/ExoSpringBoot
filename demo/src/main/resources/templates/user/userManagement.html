@@ -1,0 +1,39 @@
+<div xmlns:th="https://www.thymeleaf.org">
+<div th:replace="fragment/header::header"></div>
+<div class="bg-success">
+	<div class="container bg-success">
+	 <h1 class="text-center">Inscription des Users</h1> 
+	<form method="post" th:object="${user}" th:action="@{/userManagement}">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Prenom</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="prenom"/>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">nom</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="nom"/>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" name="email" />
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" name="password">
+    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Role</label>
+  <select class="form-select" aria-label="Default select example" name="roles">
+	  <option selected>Selectionner un role</option>
+	  <option th:each="role:${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+	<!--  <option value="1">Utilisateur</option>
+	  <option value="2">Administrateur</option>-->
+  </select>
+  </div>
+  <button type="submit" class="btn btn-warning mb-3">S'inscrire</button>
+</form>
+</div>
+</div>
+<div th:replace="fragment/footer::footer"></div>
+</div>
