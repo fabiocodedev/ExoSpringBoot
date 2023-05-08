@@ -31,6 +31,13 @@ public class UserService {
 	        return ("/");
 		}
 	}
+	
+	
+	public User getUserByEmail(String email) {
+		
+		return userRepository.findByEmail(email);
+		
+	}
 		
 //		public boolean addCustomer(Customer customer, BindingResult bindingResult) {
 //			

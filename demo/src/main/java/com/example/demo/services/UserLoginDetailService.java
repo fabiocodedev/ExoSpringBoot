@@ -14,16 +14,16 @@ import com.example.demo.repository.UserRepository;
 public class UserLoginDetailService implements UserDetailsService{
 
 	@Autowired
-	public UserRepository customerRepository;
+	public UserRepository userRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		User customer = customerRepository.findByEmail(username);
-		if (customer == null) {
-			throw new UsernameNotFoundException("customer not found !");
+		User user = userRepository.findByEmail(username);
+		if (user == null) {
+			throw new UsernameNotFoundException("user not found !");
 		}
-		return new UserLogin(customer);
+		return new UserLogin(user);
 		
 	}
 }
