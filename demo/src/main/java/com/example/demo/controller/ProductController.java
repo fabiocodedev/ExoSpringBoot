@@ -41,7 +41,7 @@ public class ProductController {
 			}
 			//redirect = redirige vers l'url donc /.../... ou / ou /..
 //			return "redirect:/addProduct";
-			return "addProduct";
+			return "listProduct";
 			
 		}
 }
