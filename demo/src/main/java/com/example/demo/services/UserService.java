@@ -16,6 +16,8 @@ public class UserService {
 	private UserRepository userRepository;
 
 	
+//	******************* CREATE ****************************
+	
 	public String addUser(User user, BindingResult bindingResult) {
 		
 		if (userRepository.findByEmail (user.getEmail ()) != null ) {
@@ -39,16 +41,5 @@ public class UserService {
 		
 	}
 		
-//		public boolean addCustomer(Customer customer, BindingResult bindingResult) {
-//			
-//			
-//
-//				BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//				customer.setPassword(encoder.encode(customer.getPassword()));
-//				customerRepository.save(customer);
-//				System.out.println("ELSE DU SERVICE");
-//				return true;
-//			
-//    }
 	
 }

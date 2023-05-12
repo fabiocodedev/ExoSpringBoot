@@ -1,11 +1,14 @@
 package com.example.demo.controller;
 
+import javax.management.AttributeNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.bean.Product;
@@ -44,4 +47,43 @@ public class ProductController {
 			return "listProduct";
 			
 		}
+		
+		//************************ UPDATE PRODUCT ********************************
+		
+//		@GetMapping("/update-product/{id}")
+//		public void updateProduct(@Validated @PathVariable(value = "id") Product product, BindingResult bindingResult, Model model, int id) throws AttributeNotFoundException {
+//			
+//			productService.checkProductPresent(id, model);
+//			productService.ProductUpdate(id,product);
+//			
+//			
+//		}
+		
+		@GetMapping("/update-product/{id}")
+		public String checkProduct(Model model, @PathVariable(value = "id") int id) throws AttributeNotFoundException {
+			
+			productService.checkProductPresent(id, model);	
+			return "addProduct";
+			
+		}
+		@PostMapping("/update-product/{id}")
+		public String updateProduct(@Validated @PathVariable(value = "id")  int id, Product product) throws AttributeNotFoundException {
+			
+			productService.ProductUpdate(id,product);
+			return "redirect:/addProduct";
+			
+		}
+		
+		//************************ DELETE PRODUCT ********************************
+		
+		
+		
+		@GetMapping("/delete-product/{id}")
+		private String deleteProd(@PathVariable("id")int id) {
+			productService.deleteProduct(id);
+			return "redirect:/list-product";
+		}
+		
+		
+		
 }

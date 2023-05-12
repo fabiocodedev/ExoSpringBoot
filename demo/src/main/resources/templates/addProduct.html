@@ -1,23 +1,24 @@
 <div th:replace="fragment/header::header"></div>
-<h1 th:text="${product.id} > 0 ? 'Update produit !' : 'Ajout produit !'" class="text-center"></h1> 
-	<form method="post" th:object="${product}" th:action="@{/add-product}" enctype="multipart/form-data" class="bg-success py-3">
+	<h1 th:text="${product.id} > 0 ? 'Update produit !' : 'Ajout produit !'" class="text-center"></h1> 
+<!-- 	<form method="post" th:object="${product}" th:action="@{/add-product}" enctype="multipart/form-data" class="bg-success py-3"> -->
+	<form method="post" th:object="${product}" th:action="${product.id} > 0 ? '@{/update-product}' : '@{/add-product}'" enctype="multipart/form-data" class="bg-success py-3">
 		<div class="row justify-content-around">
 			<div class="col-5 mb-3">
 				<label for="title" class="form-label">Titre :</label>
-				<input type="text" class="form-control mb-3" id="title" name="titre" required>
+				<input type="text" class="form-control mb-3" id="title" name="titre" required th:field="*{titre}">
 				
 				<label for="description" class="form-label">Description :</label>
-				<textarea class="form-control mb-3" id="description" name="description" required></textarea>
+				<textarea class="form-control mb-3" id="description" name="description" required th:field="*{description}"></textarea>
 				
 				<label for="price" class="form-label">Prix :</label>
 				<div class="input-group">
-					<input type="number" min="0,01" step="0,01" class="form-control mb-3" id="price" name="prix" required>
+					<input type="number" min="0,01" step="0,01" class="form-control mb-3" id="price" name="prix" required th:field="*{prix}">
 					<span class="input-group-text mb-3">&euro;</span>
 			    </div>
 			</div>
 			<div class="col-5 mb-3">
 				<label for="download_img" class="form-label">Photo du produit :</label>
-				<input type="file" id="download_img" class="form-control mb-1" name="productPicPath" accept=".jpg,.png" required>
+				<input type="file" id="download_img" class="form-control mb-1" name="image" accept=".jpg,.png" required th:field="*{image}">
 
 				<a href="product?add-product=1">
 				<button class="btn btn-primary" type="button">

@@ -1,0 +1,35 @@
+<div th:replace="fragment/header::header"></div>
+JE SUIS LA PAGE ADD ARTICLE !
+	<div class="container">
+
+		<form class="row g-3" th:object="${article}" method="post" th:action="@{/ajout-article}" enctype="multipart/form-data">
+		  <div class="col-md-6">
+		    <label class="form-label">Titre</label>
+		    <input type="text" class="form-control" th:field="*{titre}" placeholder="Entrez un titre"/>
+		    	<div class="alert alert-danger" th:if="${#fields.hasErrors('titre')}" th:errors="*{titre}"></div>
+		  </div>
+		  <div class="col-6">
+		    <label for="inputAddress" class="form-label">Résumé</label>
+		    <input type="text" class="form-control" id="inputAddress" placeholder="Entrez un résumé" th:field="*{resume}"/>
+		    	<div class="alert alert-danger" th:if="${#fields.hasErrors('resume')}" th:errors="*{resume}"></div>
+		  </div>
+		  <div class="col-12">
+		    <label for="inputAddress2" class="form-label">Description</label>
+		      <textarea class="form-control" placeholder="Entrez un contenu" id="exampleFormControlTextarea1" rows="3" th:field="*{contenu}" ></textarea>
+		    	<div class="alert alert-danger" th:if="${#fields.hasErrors('contenu')}" th:errors="*{contenu}"></div>
+		  </div>
+		  
+		  <div class="input-group mb-3">
+			  <input type="hidden" class="form-control" id="inputGroupFile02"  th:field="*{image}" >
+			  <input type="file" class="form-control" id="inputGroupFile02" name="imageToUpload" >
+			  <label class="input-group-text" for="inputGroupFile02" >Upload</label>
+			</div>
+		  
+		  
+		  <div class="col-12">
+		    <button type="submit" class="btn btn-primary">J'ajoute mon article</button>
+		  </div>
+		</form>
+
+	</div>
+<div th:replace="fragment/footer::footer"></div>

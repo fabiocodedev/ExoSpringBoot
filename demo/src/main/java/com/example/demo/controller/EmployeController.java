@@ -38,7 +38,7 @@ public class EmployeController {
 			
 		}else {
 //			userRepository.save(user);
-			employeService.addEmploye(employe);
+			employeService.addEmploye(employe, bindingResult);
 			System.out.println(employe.getNom());
 		}
 		//redirect = redirige vers l'url donc /.../... ou / ou /..

@@ -1,0 +1,27 @@
+<div th:replace="fragment/header::header"></div>
+<div class="container">
+	<form method="post" th:action="@{/register}">
+		<div class="mb-3">
+			<label for="exampleInputNom" class="form-label">Nom
+				</label> <input type="text" class="form-control"
+				id="exampleInputNom" name="nom" placeholder="Saissisez votre nom">
+		</div>
+		<div class="mb-3">
+			<label for="exampleInputPrenom" class="form-label">Prenom
+				</label> <input type="text" class="form-control"
+				id="exampleInputPrenom" name="prenom" placeholder="Saissisez votre prenom">
+		</div>
+		<div class="mb-3">
+			<label for="exampleInputEmail" class="form-label">Email
+				</label> <input type="email" class="form-control"
+				id="exampleInputEmail" aria-describedby="emailHelp" name="email" placeholder="Saissisez votre email">
+		</div>
+		<div class="mb-3">
+			<label for="exampleInputPassword" class="form-label">Mot de passe</label>
+			<input type="password" class="form-control"
+				id="exampleInputPassword" name="password" placeholder="***********">
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div>
+<div th:replace="fragment/footer::footer"></div>

@@ -5,10 +5,9 @@
 
 <div class="bg-success">
 	<h3 class="text-center bg-success">Voici la liste des articles</h3>
-	<div class="row m-1" style="background-color: green"
+	<div class="row m-1" style="background-color: green" 
 		th:if="${product}!=null">
-		<div class="container d-flex justify-content-around"
-			th:each="product : ${product}">
+		<div class="container d-flex justify-content-around" th:object="${product}">
 			<div class="col-4 m-3" style="width: 25rem; height: 20rem;">
 				<img src="" class="card-img-top object-fit-cover h-100" alt="shoes">
 			</div>

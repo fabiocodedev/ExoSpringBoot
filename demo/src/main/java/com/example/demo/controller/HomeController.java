@@ -7,6 +7,7 @@ import javax.management.AttributeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ public class HomeController {
 	private EmployeService employeService;
 
 
+
 	@GetMapping("/")
 		private String getList(Model model) {
 			
@@ -36,10 +38,27 @@ public class HomeController {
 //	******************************** UPDATE ***********************************
 	// A METTRE LA OU LA METHODE EST INITIER 
 	
+	
+//	@PostMapping("/update/{id}")
+//	public String EmployeUpdate(@PathVariable(value = "aze") int id, @Valid Employe employeDetail, BindingResult bindingResult) throws AttributeNotFoundException{
+//		
+//		if (bindingResult.hasErrors()) {
+//			System.out.println("has errors" + bindingResult.getFieldErrorCount());
+//			return ("user/userManagement");
+//		}else if (userService.addUser(user, bindingResult) != null) {
+//			System.out.println("Okay");
+//			return ("redirect:/");
+//		}else {
+//			System.out.println("KO");
+//			return ("user/userManagement");
+//			
+//		}
+	
 	@GetMapping("/update/{identifiant}")
     public String getEmployeToUpdate(@PathVariable(value = "identifiant") int id, Model model){
         Optional<Employe> employeFound = employeService.findById(id);
        
+        
         if(employeFound.isPresent()) {
         	model.addAttribute("employe",employeFound.get());
         
@@ -48,8 +67,7 @@ public class HomeController {
     }
 	
 	@PostMapping("/update/{aze}")
-	public String EmployeUpdate(@PathVariable(value = "aze") int id, @Valid Employe employeDetail)
-			throws AttributeNotFoundException{
+	public String EmployeUpdate(@PathVariable(value = "aze") int id, @Valid Employe employeDetail, BindingResult bindingResult) throws AttributeNotFoundException{
 		
 		Employe employe = employeService.findById(id).orElseThrow(()-> new AttributeNotFoundException("Aucun user avec l'id :: " + id));
 		
@@ -57,11 +75,15 @@ public class HomeController {
 		employe.setPrenom(employeDetail.getPrenom());
 		employe.setEmail(employeDetail.getEmail());
 		
-		employeService.addEmploye(employe);
+			
+		employeService.addEmploye(employe,bindingResult);
 		
 		
 		return "redirect:/";
 	}
+	
+	
+	
 	
 //	************************************* DELETE METHODE 1 LONGUE *********************
 	
