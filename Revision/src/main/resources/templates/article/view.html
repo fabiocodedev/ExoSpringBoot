@@ -1,0 +1,33 @@
+<div th:replace="fragment/header::header"></div>
+JE SUIS LA PAGE VIEW !
+
+<div class="row m-1 rounded" style="background-color: green" th:if="${article}!=null">
+		<div class="card m-auto my-3 rounded" style="width: 18rem;" th:each="article : ${article}">
+			<img class="card-img-top" alt="shoes" th:src="${'upload/'+article.image}">
+			<div class="card-body">
+				<h3 class="card-title text-center" th:text="${article.titre}"></h3>
+				<p class="card-text" th:text="${article.resume}"></p>
+				<p class="card-text" th:text="${article.contenu}"></p>
+				<div class="d-flex flex-row justify-content-around">
+					<h5 class="card-text" th:text="${article.prix} + €"></h5>
+				</div>
+				<!-- <div>
+					<a th:href="@{/update-article/{id}(id=${product.id})}"
+						class="btn btn-warning"><i class="bi bi-pen text-primary"></i></a>
+
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+						th:attr="data-bs-target='#deleteModal' + *{article.id}">
+						<i class="bi bi-trash3 text-danger"></i>
+					</button>
+				</div> -->
+				
+				<button type="button" class="btn btn-warning">Modifier</button>
+				<button type="button" class="btn btn-danger">Supprimer</button>
+				
+			</div>
+		</div>
+	</div>
+	<div th:insert="~{article/addArticle::form}"></div>
+	
+	
+<div th:replace="fragment/footer::footer"></div>

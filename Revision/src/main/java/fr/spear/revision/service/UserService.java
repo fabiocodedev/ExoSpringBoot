@@ -47,4 +47,8 @@ public class UserService {
 	//CRUD -- D - Debut
 	//CRUD -- D - Fin
 	
+	public User getUserByEmail(String mail) {        
+		return userRepo.findByEmail(mail);    
+		}
+	
 }

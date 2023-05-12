@@ -1,3 +1,17 @@
 <div th:replace="fragment/header::header"></div>
 JE SUIS LA PAGE LIST ARTICLE !
+
+<div class="row m-1 rounded" style="background-color: green" th:if="${article}!=null">
+		<div class="card m-auto my-3 rounded" style="width: 18rem;" th:each="article : ${article}">
+			<img class="card-img-top" alt="shoes" th:src="${'upload/'+article.image}">
+			<div class="card-body">
+				<h3 class="card-title text-center" th:text="${article.titre}"></h3>
+				<p class="card-text" th:text="${article.resume}"></p>
+				<div class="d-flex flex-row justify-content-around">
+					<h5 class="card-text" th:text="${article.prix} + €"></h5>
+					<a th:href=@{/view/{id}(id=${article.id})} class="btn btn-primary">Voir</a>
+				</div>
+			</div>
+		</div>
+	</div>
 <div th:replace="fragment/footer::footer"></div>

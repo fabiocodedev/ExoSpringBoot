@@ -1,8 +1,9 @@
 <div th:replace="fragment/header::header"></div>
 JE SUIS LA PAGE ADD ARTICLE !
-	<div class="container">
+	<div class="container" th:fragment="form">
 
-		<form class="row g-3" th:object="${article}" method="post" th:action="@{/ajout-article}" enctype="multipart/form-data">
+		<form class="row g-3" th:object="${article}" method="post" th:action="@{/add-article}" enctype="multipart/form-data">
+		    <input type="text" class="form-control" th:field="*{id}"/>
 		  <div class="col-md-6">
 		    <label class="form-label">Titre</label>
 		    <input type="text" class="form-control" th:field="*{titre}" placeholder="Entrez un titre"/>
